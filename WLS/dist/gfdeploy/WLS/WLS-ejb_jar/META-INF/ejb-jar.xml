@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar version="3.2"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+ http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+    <display-name>WLS-ejb</display-name>
+    <enterprise-beans>
+        <session>
+            <ejb-name>MyUserFacade</ejb-name>
+            <remote>session.MyUserFacadeRemote</remote>
+            <!-- <local>session.MyuserFacadeLocal</local> -->
+            <ejb-class>session.MyUserFacade</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+    </enterprise-beans>
+</ejb-jar>
