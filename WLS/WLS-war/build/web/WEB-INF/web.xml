@@ -20,7 +20,7 @@
         <web-resource-collection>
             <web-resource-name>CoachesOnly</web-resource-name>
             <description>CoachesOnly Access</description>
-            <url-pattern>/faces/coach/*</url-pattern>
+            <url-pattern>/faces/Coach/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -33,7 +33,7 @@
         <realm-name>fileRealm</realm-name>
         <form-login-config>
             <form-login-page>/faces/login.xhtml</form-login-page>
-         
+            <form-error-page>/faces/retryLogin.xhtml”</form-error-page>
         </form-login-config>
     </login-config>
     

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Add Membership</title>
+    </h:head>
+    <h:body>
+        <h2>Add Membership</h2>
+        
+       <h3>
+            <h:form>
+                <h:panelGrid columns = "2" >
+
+                    <h:outputText
+                        value ="Enter membership name"
+                        />
+                    <h:inputText
+                        id ="membershipName"
+                        value = "#{membershipManagedBean.name}"
+                        />
+
+
+                   
+                    <h:outputText
+                        value ="Enter membership price "
+                        />
+                    <h:inputText
+                        id ="membershipPrice"
+                        value ="#{membershipManagedBean.price}"
+                        />
+
+                    
+                    <h:outputText
+                        value ="Enter membership length"
+                        />
+                    <h:inputText
+                        id ="membershipLength"
+                        value ="#{membershipManagedBean.length}"
+                        />
+                    
+
+                    <h:outputText
+                        value ="Enter membership descritption"
+                        />
+                    <h:inputText
+                        id ="membershipDescription"
+                        value ="#{membershipManagedBean.description}"
+                        
+                        />
+
+                </h:panelGrid>
+
+
+                <p></p>
+                <h:commandButton id = "add" type ="Submit" value ="Add Membership" action = "#{membershipManagedBean.addMembership}"/>
+
+            </h:form>
+
+
+        </h3>
+    </h:body>
+</html>
+

@@ -9,12 +9,11 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,37 +25,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "MEMBERSHIPS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Memberships.findAll", query = "SELECT m FROM Memberships m"),
-    @NamedQuery(name = "Memberships.findByName", query = "SELECT m FROM Memberships m WHERE m.name = :name"),
-    @NamedQuery(name = "Memberships.findByPrice", query = "SELECT m FROM Memberships m WHERE m.price = :price"),
-    @NamedQuery(name = "Memberships.findByMembershipLenght", query = "SELECT m FROM Memberships m WHERE m.membershipLenght = :membershipLenght"),
-    @NamedQuery(name = "Memberships.findByDescritption", query = "SELECT m FROM Memberships m WHERE m.descritption = :descritption"),
-    @NamedQuery(name = "Memberships.findByMembershipKey", query = "SELECT m FROM Memberships m WHERE m.membershipKey = :membershipKey")})
+    @NamedQuery(name = "Membership.findAll", query = "SELECT m FROM Membership m"),
+    @NamedQuery(name = "Membership.findByName", query = "SELECT m FROM Membership m WHERE m.name = :name"),
+    @NamedQuery(name = "Membership.findByPrice", query = "SELECT m FROM Membership m WHERE m.price = :price"),
+    @NamedQuery(name = "Membership.findByLength", query = "SELECT m FROM Membership m WHERE m.length = :length"),
+    @NamedQuery(name = "Membership.findByDescription", query = "SELECT m FROM Membership m WHERE m.description = :description")})
 public class Membership implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Size(max = 55)
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "NAME")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRICE")
     private Double price;
-    @Column(name = "MEMBERSHIP_LENGHT")
-    private Integer membershipLenght;
-    @Size(max = 500)
-    @Column(name = "DESCRITPTION")
-    private String descritption;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "MEMBERSHIP_KEY")
-    private Integer membershipKey;
+    @Column(name = "LENGTH")
+    private Integer length;
+    @Size(max = 800)
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     public Membership() {
     }
 
-    public Membership(Integer membershipKey) {
-        this.membershipKey = membershipKey;
+    public Membership(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -75,34 +71,26 @@ public class Membership implements Serializable {
         this.price = price;
     }
 
-    public Integer getMembershipLenght() {
-        return membershipLenght;
+    public Integer getLength() {
+        return length;
     }
 
-    public void setMembershipLenght(Integer membershipLenght) {
-        this.membershipLenght = membershipLenght;
+    public void setLength(Integer length) {
+        this.length = length;
     }
 
-    public String getDescritption() {
-        return descritption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescritption(String descritption) {
-        this.descritption = descritption;
-    }
-
-    public Integer getMembershipKey() {
-        return membershipKey;
-    }
-
-    public void setMembershipKey(Integer membershipKey) {
-        this.membershipKey = membershipKey;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (membershipKey != null ? membershipKey.hashCode() : 0);
+        hash += (name != null ? name.hashCode() : 0);
         return hash;
     }
 
@@ -113,7 +101,7 @@ public class Membership implements Serializable {
             return false;
         }
         Membership other = (Membership) object;
-        if ((this.membershipKey == null && other.membershipKey != null) || (this.membershipKey != null && !this.membershipKey.equals(other.membershipKey))) {
+        if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
             return false;
         }
         return true;
@@ -121,7 +109,7 @@ public class Membership implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Memberships[ membershipKey=" + membershipKey + " ]";
+        return "entity.Membership[ name=" + name + " ]";
     }
     
 }

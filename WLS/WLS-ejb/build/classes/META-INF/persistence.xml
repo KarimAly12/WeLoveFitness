@@ -3,6 +3,7 @@
   <persistence-unit name="WLS-ejbPU" transaction-type="JTA">
     <jta-data-source>jdbc/__default</jta-data-source>
     <class>entity.WlsUser</class>
+    <class>entity.Membership</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

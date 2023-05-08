@@ -6,6 +6,7 @@
 package session;
 
 import dto.MembershipDTO;
+import java.util.ArrayList;
 import javax.ejb.Remote;
 
 /**
@@ -16,5 +17,9 @@ import javax.ejb.Remote;
 public interface MembershipFacadeRemote {
 
     Boolean add_membership(MembershipDTO membership);
+
+    ArrayList<MembershipDTO> getMembershipsAll();
+
+    Boolean deleteMembership(String membershipname);
     
 }

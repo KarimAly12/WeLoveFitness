@@ -5,12 +5,20 @@
         <group>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Coach/mainmenu.xhtml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Memembers/signUp.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/WEB-INF/beans.xml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/CoachManagedBean.java</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Memembers/login.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/WEB-INF/faces-config.xml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/retryLogin.xhtml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/mainmenu.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/index.html</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/LoginManagedBean.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Memembers/login.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/MembershipManagedBean.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Coach/viewMemberships.xhtml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/login.xhtml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/WEB-INF/web.xml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/signUp.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/Coach/addmembership.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/index.xhtml</file>
         </group>
     </open-files>
 </project-private>

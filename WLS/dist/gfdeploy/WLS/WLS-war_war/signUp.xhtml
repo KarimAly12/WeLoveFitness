@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Sign Up</title>
+    </h:head>
+    <h:body>
+
+        <h2>Sign Up</h2>
+
+        <h3>
+            <h:form>
+                <h:panelGrid columns = "3" >
+
+                    <h:outputText
+                        value ="Enter your ID"
+                        />
+                    <h:inputText
+                        id ="userID"
+                        value ="#{myUserManagedBean.userID}"
+                        />
+
+
+                    <h:message
+                        for ="userID" style="color:red"
+                        />
+                    <h:outputText
+                        value ="Enter your name"
+                        />
+                    <h:inputText
+                        id ="userName"
+                        value ="#{myUserManagedBean.userName}"
+                        />
+
+                    <h:message
+                        for ="userName" style="color:red"
+                        />
+                    <h:outputText
+                        value ="Enter your phone number"
+                        />
+                    <h:inputText
+                        id ="userPhoneNumber"
+                        value ="#{myUserManagedBean.userPhoneNumber}"
+                        />
+                    <h:message
+                        for ="userPhoneNumber" style="color:red"
+                        />
+
+                    <h:outputText
+                        value ="Enter your email"
+                        />
+                    <h:inputText
+                        id ="userEmail"
+                        value ="#{myUserManagedBean.userEmail}"
+                        validator = "#{myUserManagedBean.isValiduseremail}"
+                        />
+
+
+                    <h:message
+                        for ="userEmail" style="color:red"
+                        />
+
+
+                    <h:outputText
+                        value ="Enter your password"
+                        />
+                    <h:inputText
+                        id ="userPassword"
+                        value ="#{myUserManagedBean.userPassword}"
+                        />
+
+                    <h:message
+                        for ="userPassword" style="color:red"
+                        />
+
+                    <h:outputText
+                        value ="Enter your security question"
+                        />
+                    <h:inputText
+                        id ="userSEQN"
+                        value ="#{myUserManagedBean.SEQN}"
+                        />
+
+                    <h:message
+                        for ="userSEQN" style="color:red"
+                        />
+
+                    
+                    <h:outputText
+                        value ="Enter your security answer"
+                        />
+                    <h:inputText
+                        id ="userSEAN"
+                        value ="#{myUserManagedBean.SEAN}"
+                        />
+
+                    <h:message
+                        for ="userSEAN" style="color:red"
+                        />
+
+
+                </h:panelGrid>
+
+
+                <p></p>
+                <h:commandButton id = "signup" type ="Submit" value ="Sign Up" action = "#{myUserManagedBean.addUser}"/>
+
+            </h:form>
+
+
+        </h3>
+    </h:body>
+</html>
+
