@@ -64,9 +64,10 @@ public class LoginManagedBean implements Serializable{
         
         if(userDTO == null){
             
-            result= "invalidLogin";
+            result= "/Members/signup.xhtml";
         }else{
-            result= "validLogin";
+            result= "/Members/mainmenu.xhtml";
+            //System.out.println("validLogin");
         }
         
         return result;

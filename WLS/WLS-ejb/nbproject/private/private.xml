@@ -5,9 +5,9 @@
         <group>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/java/session/MyUserFacade.java</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/java/session/MembershipFacade.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/java/entity/Membership.java</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/java/session/CoachFacade.java</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/conf/MANIFEST.MF</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/conf/persistence.xml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-ejb/src/conf/ejb-jar.xml</file>
         </group>
     </open-files>
