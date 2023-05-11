@@ -18,7 +18,7 @@ import session.MyUserFacadeRemote;
  */
 @Named(value = "loginManagedBean")
 @SessionScoped
-public class LoginManagedBean implements Serializable{
+public class EmployeeLoginManagedBean implements Serializable{
 
     @EJB
     private MyUserFacadeRemote myUserFacade;
@@ -55,7 +55,7 @@ public class LoginManagedBean implements Serializable{
     }
     
     
-    public LoginManagedBean() {
+    public EmployeeLoginManagedBean() {
     }
     
     public String isLoginValid(){

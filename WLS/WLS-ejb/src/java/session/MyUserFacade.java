@@ -122,11 +122,33 @@ public class MyUserFacade implements MyUserFacadeRemote {
                 user.getUseremail(),
                 user.getUserpassword(),
                 user.getUserseqn(),
-                user.getUsersean()
+                user.getUsersean(),
+                user.getMembership()
         );
 
         return userDTO;
 
+    }
+    
+    
+    public Boolean buyMembership(String userId, String membershipName){
+        try {
+            WlsUser user = find(userId);
+            
+            if (user != null){
+                
+                user.setMembership(membershipName);
+                edit(user);
+                return  true;
+                
+            }
+            
+            
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return false;
     }
 
     private WlsUser myUserDTO2DAO(MyUserDTO myUserDTO) {
@@ -139,6 +161,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
         user.setUserpassword(myUserDTO.getUserPassword());
         user.setUserseqn(myUserDTO.getSEQN());
         user.setUsersean(myUserDTO.getSEAN());
+        user.setMembership(myUserDTO.getMembershipName());
 
         return user;
     }

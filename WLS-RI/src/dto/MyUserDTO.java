@@ -17,8 +17,14 @@ public class MyUserDTO {
     private final String userPassword;
     private final String SEQN;
     private final String SEAN;
+    private final String membershipName;
 
-    public MyUserDTO(Integer userID, String userName, String userPhoneNumber, String userEmail, String userPassword, String SEQN, String SEAN) {
+    public String getMembershipName() {
+        return membershipName;
+    }
+
+
+    public MyUserDTO(Integer userID, String userName, String userPhoneNumber, String userEmail, String userPassword, String SEQN, String SEAN,String membershipName) {
         this.userID = userID;
         this.userName = userName;
         this.userPhoneNumber = userPhoneNumber;
@@ -26,6 +32,7 @@ public class MyUserDTO {
         this.userPassword = userPassword;
         this.SEQN = SEQN;
         this.SEAN = SEAN;
+        this.membershipName = membershipName;
     }
 
     public Integer getUserID() {

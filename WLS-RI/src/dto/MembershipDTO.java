@@ -11,42 +11,36 @@ package dto;
  */
 public class MembershipDTO {
     
-    private String name;
-    private Double price;
-    private Integer length;
-    private String description;
+    private final String name;
+    private final Double price;
+    private final Integer length;
+    private final String description;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   
+
+    
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+    
 
     public Integer getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
-    }
+   
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+   
 
     public MembershipDTO(String name, Double price, Integer length, String description) {
         this.name = name;

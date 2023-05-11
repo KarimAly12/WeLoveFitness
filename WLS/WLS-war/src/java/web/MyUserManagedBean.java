@@ -37,6 +37,7 @@ public class MyUserManagedBean implements Serializable{
     private String userPassword;
     private String SEQN;
     private String SEAN;
+    private String membershipName;
 
     public MyUserFacadeRemote getMyuserFacade() {
         return myuserFacade;
@@ -105,11 +106,11 @@ public class MyUserManagedBean implements Serializable{
     public void addUser(){
         //try {
         if (userID != null && userName != null && userPhoneNumber != null && userPassword != null && SEQN != null && SEAN != null){
-            MyUserDTO userSearched = myuserFacade.findUser(Integer.parseInt(userID));
+            MyUserDTO userSearched = myuserFacade.findUserByEmail(userEmail);
 
             if (userSearched == null){
                 System.err.println("IN");
-                MyUserDTO user = new MyUserDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, userPassword, SEQN, SEAN);
+                MyUserDTO user = new MyUserDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, userPassword, SEQN, SEAN, null);
                 if (myuserFacade != null)
                   myuserFacade.createUser(user);
            }
@@ -119,6 +120,11 @@ public class MyUserManagedBean implements Serializable{
         }*/
     }
     
+    
+    
+    public void buyMembership(){
+        
+    }
     
     
     public void isValiduseremail(FacesContext context, UIComponent component, Object value) throws ValidatorException{
@@ -133,6 +139,22 @@ public class MyUserManagedBean implements Serializable{
             
         }
         return;
+    }
+    
+     public String isLoginValid(){
+        String result = "";
+        MyUserDTO userDTO = myuserFacade.findUserbyPasswordAndEmail(userPassword, userEmail);
+        
+        if(userDTO == null){
+            
+            result= "/Members/signup.xhtml";
+        }else{
+            result= "/Members/mainmenu.xhtml";
+            //System.out.println("validLogin");
+        }
+        
+        return result;
+        
     }
    
 

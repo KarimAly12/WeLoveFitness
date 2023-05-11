@@ -29,8 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "WlsUser.findAll", query = "SELECT w FROM WlsUser w"),
     @NamedQuery(name = "WlsUser.findByUserid", query = "SELECT w FROM WlsUser w WHERE w.userid = :userid"),
     @NamedQuery(name = "WlsUser.findByUserphonenumber", query = "SELECT w FROM WlsUser w WHERE w.userphonenumber = :userphonenumber"),
-    @NamedQuery(name = "WlsUser.findByuseremail", query = "SELECT w FROM WlsUser w WHERE w.useremail = :useremail"),
     @NamedQuery(name = "WlsUser.findByUserpassword", query = "SELECT w FROM WlsUser w WHERE w.userpassword = :userpassword"),
+    @NamedQuery(name = "WlsUser.findByUseremail", query = "SELECT w FROM WlsUser w WHERE w.useremail = :useremail"),
+    @NamedQuery(name = "WlsUser.findByMembership", query = "SELECT w FROM WlsUser w WHERE w.membership = :membership"),
     @NamedQuery(name = "WlsUser.findByUserUseremailAndPassword", query = "SELECT w FROM WlsUser w WHERE w.userpassword = :userpassword and w.useremail = :useremail")})
 public class WlsUser implements Serializable {
 
@@ -47,10 +48,6 @@ public class WlsUser implements Serializable {
     @Size(max = 8)
     @Column(name = "USERPHONENUMBER")
     private String userphonenumber;
-    @Lob
-    @Size(max = 32700)
-    @Column(name = "USEREMAIL")
-    private String useremail;
     @Size(max = 8)
     @Column(name = "USERPASSWORD")
     private String userpassword;
@@ -62,6 +59,12 @@ public class WlsUser implements Serializable {
     @Size(max = 32700)
     @Column(name = "USERSEAN")
     private String usersean;
+    @Size(max = 300)
+    @Column(name = "USEREMAIL")
+    private String useremail;
+    @Size(max = 255)
+    @Column(name = "MEMBERSHIP")
+    private String membership;
 
     public WlsUser() {
     }
@@ -94,14 +97,6 @@ public class WlsUser implements Serializable {
         this.userphonenumber = userphonenumber;
     }
 
-    public String getUseremail() {
-        return useremail;
-    }
-
-    public void setUseremail(String useremail) {
-        this.useremail = useremail;
-    }
-
     public String getUserpassword() {
         return userpassword;
     }
@@ -124,6 +119,22 @@ public class WlsUser implements Serializable {
 
     public void setUsersean(String usersean) {
         this.usersean = usersean;
+    }
+
+    public String getUseremail() {
+        return useremail;
+    }
+
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
+    }
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public void setMembership(String membership) {
+        this.membership = membership;
     }
 
     @Override
@@ -150,5 +161,5 @@ public class WlsUser implements Serializable {
     public String toString() {
         return "entity.WlsUser[ userid=" + userid + " ]";
     }
-    
+
 }
