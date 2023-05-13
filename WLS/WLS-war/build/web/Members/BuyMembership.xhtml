@@ -27,8 +27,8 @@
                             <td>#{row.description}</td>
                             <td>
                                 <h:form>
-                                    <h:commandButton value ="Buy" type="Submit" action ="#{membershipManagedBean.deleteMembership}">
-                                        <f:param name ="nameID" value="#{row.name}"/>
+                                    <h:commandButton value ="Buy" type="Submit" action ="#{myUserManagedBean.buyMembership}">
+                                        <f:param name ="membershipName" value="#{row.name}"/>
 
                                     </h:commandButton>
                                 </h:form>

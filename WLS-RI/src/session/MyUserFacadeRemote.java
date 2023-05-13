@@ -22,4 +22,5 @@ public interface MyUserFacadeRemote {
     
     MyUserDTO findUserbyPasswordAndEmail(String password, String userEmail);
     MyUserDTO findUserByEmail(String email);
+    boolean buyMembership(String userEmail, String membershipName);
 }

@@ -46,7 +46,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
 
     @Override
     public MyUserDTO findUserByEmail(String email) {
-        Query query = em.createNamedQuery("WlsUser.findByuseremail").setParameter("useremail", email);
+        Query query = em.createNamedQuery("WlsUser.findByUseremail").setParameter("useremail", email);
 
         try {
 
@@ -58,6 +58,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
                 userDTOList.add(myUserDAO2DTO(userList.get(i)));
             }
             
+            System.out.println("findUserByEmail " + userDTOList.get(0).getUserEmail());
             return userDTOList.get(0);
 
         } catch (Exception ex) {
@@ -130,14 +131,18 @@ public class MyUserFacade implements MyUserFacadeRemote {
 
     }
     
-    
-    public Boolean buyMembership(String userId, String membershipName){
+    @Override
+    public boolean buyMembership(String userEmail, String membershipName){
+        WlsUser user = myUserDTO2DAO(findUserByEmail(userEmail));
+        
         try {
-            WlsUser user = find(userId);
+            
             
             if (user != null){
-                
+                System.out.println("User is not null");
                 user.setMembership(membershipName);
+                System.out.println("membership " + membershipName);
+                System.out.println("user Membership " + user.getMembership());
                 edit(user);
                 return  true;
                 

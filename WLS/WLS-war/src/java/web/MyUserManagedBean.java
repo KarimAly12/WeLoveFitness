@@ -11,6 +11,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import session.MyUserFacadeRemote;
@@ -122,7 +123,22 @@ public class MyUserManagedBean implements Serializable{
     
     
     
-    public void buyMembership(){
+    public String buyMembership(){
+        
+        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        
+        String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
+        
+        //System.out.println(userEmail);
+        
+        if (myuserFacade.buyMembership(userEmail, membershipParam)){
+            
+            return "";
+        }else{
+            return ""; 
+        }
         
     }
     
