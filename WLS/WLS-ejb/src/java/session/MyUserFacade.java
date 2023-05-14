@@ -5,7 +5,7 @@
  */
 package session;
 
-import dto.MyUserDTO;
+import dto.MemberDTO;
 import entity.WlsUser;
 import java.util.ArrayList;
 import javax.ejb.Stateless;
@@ -45,12 +45,12 @@ public class MyUserFacade implements MyUserFacadeRemote {
     }
 
     @Override
-    public MyUserDTO findUserByEmail(String email) {
+    public MemberDTO findUserByEmail(String email) {
         Query query = em.createNamedQuery("WlsUser.findByUseremail").setParameter("useremail", email);
 
         try {
 
-            ArrayList<MyUserDTO> userDTOList = new ArrayList<MyUserDTO>();
+            ArrayList<MemberDTO> userDTOList = new ArrayList<MemberDTO>();
 
             List<WlsUser> userList = query.getResultList();
 
@@ -58,7 +58,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
                 userDTOList.add(myUserDAO2DTO(userList.get(i)));
             }
             
-            System.out.println("findUserByEmail " + userDTOList.get(0).getUserEmail());
+            System.out.println("findUserByEmail " + userDTOList.get(0).getMemberEmail());
             return userDTOList.get(0);
 
         } catch (Exception ex) {
@@ -68,11 +68,11 @@ public class MyUserFacade implements MyUserFacadeRemote {
     }
 
     @Override
-    public MyUserDTO findUserbyPasswordAndEmail(String password, String userEmail) {
+    public MemberDTO findUserbyPasswordAndEmail(String password, String userEmail) {
         Query query = em.createNamedQuery("WlsUser.findByUserUseremailAndPassword").setParameter("userpassword", password).setParameter("useremail", userEmail);
 
         try {
-            ArrayList<MyUserDTO> userDTOList = new ArrayList<MyUserDTO>();
+            ArrayList<MemberDTO> userDTOList = new ArrayList<MemberDTO>();
 
             List<WlsUser> userList = query.getResultList();
 
@@ -95,7 +95,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
     }
 
     @Override
-    public boolean createUser(MyUserDTO userDTO) {
+    public boolean createUser(MemberDTO userDTO) {
 
         WlsUser user = myUserDTO2DAO(userDTO);
 
@@ -106,7 +106,7 @@ public class MyUserFacade implements MyUserFacadeRemote {
     }
 
     @Override
-    public MyUserDTO findUser(Integer userID) {
+    public MemberDTO findUser(Integer userID) {
 
         WlsUser user = find(userID);
         if (user == null) {
@@ -115,8 +115,8 @@ public class MyUserFacade implements MyUserFacadeRemote {
         return myUserDAO2DTO(user);
     }
 
-    private MyUserDTO myUserDAO2DTO(WlsUser user) {
-        MyUserDTO userDTO = new MyUserDTO(
+    private MemberDTO myUserDAO2DTO(WlsUser user) {
+        MemberDTO userDTO = new MemberDTO(
                 user.getUserid(),
                 user.getUsername(),
                 user.getUserphonenumber(),
@@ -130,6 +130,9 @@ public class MyUserFacade implements MyUserFacadeRemote {
         return userDTO;
 
     }
+    
+    
+    
     
     @Override
     public boolean buyMembership(String userEmail, String membershipName){
@@ -156,19 +159,38 @@ public class MyUserFacade implements MyUserFacadeRemote {
         return false;
     }
 
-    private WlsUser myUserDTO2DAO(MyUserDTO myUserDTO) {
+    private WlsUser myUserDTO2DAO(MemberDTO myUserDTO) {
         WlsUser user = new WlsUser();
 
-        user.setUserid(myUserDTO.getUserID());
-        user.setUsername(myUserDTO.getUserName());
-        user.setUserphonenumber(myUserDTO.getUserPhoneNumber());
-        user.setUseremail(myUserDTO.getUserEmail());
-        user.setUserpassword(myUserDTO.getUserPassword());
+        user.setUserid(myUserDTO.getMemberID());
+        user.setUsername(myUserDTO.getMemberName());
+        user.setUserphonenumber(myUserDTO.getMemberPhoneNumber());
+        user.setUseremail(myUserDTO.getMemberEmail());
+        user.setUserpassword(myUserDTO.getMemberPassword());
         user.setUserseqn(myUserDTO.getSEQN());
         user.setUsersean(myUserDTO.getSEAN());
         user.setMembership(myUserDTO.getMembershipName());
 
         return user;
+    }
+
+    @Override
+    public boolean updateMember(MemberDTO member) {
+        
+       try{
+           
+           edit(myUserDTO2DAO(member));
+           return true;
+           
+           
+           
+       }catch(Exception ex){
+           
+       }
+        
+        
+        
+        return false;
     }
 
 }

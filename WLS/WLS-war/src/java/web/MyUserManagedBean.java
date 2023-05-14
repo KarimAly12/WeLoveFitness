@@ -5,8 +5,10 @@
  */
 package web;
 
-import dto.MyUserDTO;
+import dto.MemberDTO;
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -22,7 +24,7 @@ import session.MyUserFacadeRemote;
  */
 @Named(value = "myUserManagedBean")
 @SessionScoped
-public class MyUserManagedBean implements Serializable{
+public class MyUserManagedBean implements Serializable {
 
     @javax.ejb.EJB
     private MyUserFacadeRemote myuserFacade;
@@ -39,6 +41,51 @@ public class MyUserManagedBean implements Serializable{
     private String SEQN;
     private String SEAN;
     private String membershipName;
+    private String oldPassword;
+    private String confirmPassword;
+    private String newPasswod;
+    private MemberDTO member;
+
+    public String getNewPasswod() {
+        return newPasswod;
+    }
+
+    public void setNewPasswod(String newPasswod) {
+        this.newPasswod = newPasswod;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getMembershipName() {
+        return membershipName;
+    }
+
+    public void setMembershipName(String membershipName) {
+        this.membershipName = membershipName;
+    }
+
+    public MemberDTO getMember() {
+        member = myuserFacade.findUserByEmail(userEmail);
+        return member;
+    }
+
+    public void setMember(MemberDTO user) {
+        this.member = user;
+    }
 
     public MyUserFacadeRemote getMyuserFacade() {
         return myuserFacade;
@@ -103,76 +150,156 @@ public class MyUserManagedBean implements Serializable{
     public void setSEAN(String SEAN) {
         this.SEAN = SEAN;
     }
-    
-    public void addUser(){
-        //try {
-        if (userID != null && userName != null && userPhoneNumber != null && userPassword != null && SEQN != null && SEAN != null){
-            MyUserDTO userSearched = myuserFacade.findUserByEmail(userEmail);
 
-            if (userSearched == null){
+    public void addUser() {
+        //try {
+        if (userID != null && userName != null && userPhoneNumber != null && userPassword != null && SEQN != null && SEAN != null) {
+            MemberDTO userSearched = myuserFacade.findUserByEmail(userEmail);
+
+            if (userSearched == null) {
                 System.err.println("IN");
-                MyUserDTO user = new MyUserDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, userPassword, SEQN, SEAN, null);
-                if (myuserFacade != null)
-                  myuserFacade.createUser(user);
-           }
+                MemberDTO user = new MemberDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, userPassword, SEQN, SEAN, null);
+                if (myuserFacade != null) {
+                    myuserFacade.createUser(user);
+                }
+            }
         }
         /*} catch (Exception e) {
             System.out.print(e);
         }*/
     }
-    
-    
-    
-    public String buyMembership(){
-        
-        
+
+    public String buyMembership() {
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
-        
+
         String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
-        
+
         //System.out.println(userEmail);
-        
-        if (myuserFacade.buyMembership(userEmail, membershipParam)){
-            
+        if (myuserFacade.buyMembership(userEmail, membershipParam)) {
+
             return "";
-        }else{
-            return ""; 
+        } else {
+            return "";
         }
+
+    }
+
+    public void isValiduseremail(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+
+        MemberDTO user = myuserFacade.findUserByEmail(userEmail);
+
+        if (user != null) {
+            FacesMessage message = new FacesMessage("The email exist. Write different email");
+            userEmail = member.getMemberEmail();
+
+            throw new ValidatorException(message);
+
+        }
+        return;
+    }
+
+    public String isLoginValid() {
+        String result = "";
+        MemberDTO userDTO = myuserFacade.findUserbyPasswordAndEmail(userPassword, userEmail);
+
+        if (userDTO == null) {
+
+            result = "/member/signup.xhtml";
+        } else {
+            result = "/member/mainmenu.xhtml";
+            //System.out.println("validLogin");
+        }
+
+        return result;
+
+    }
+    
+    
+    public String openUpdatePage(){
+        member = myuserFacade.findUserByEmail(userEmail);
+        
+        
+        System.out.println("openUpdatePage " + member.getMemberEmail());
+        
+        return "/member/updateMember.xhtml";
+        
+        
         
     }
     
     
-    public void isValiduseremail(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+
+    public void isValidOldPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
        
-        MyUserDTO user = myuserFacade.findUserByEmail(userEmail);
         
-        if(user != null){
+        System.out.println("isValidOldPassword " + oldPassword);
+        if (oldPassword != member.getMemberPassword()){
             FacesMessage message = new FacesMessage("The email exist. Write different email");
-            userEmail = "";
+            
+            throw new ValidatorException(message);
+            
+            
+        }
+        
+        return;
+
+    }
+    
+    public void isValidNewPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+        
+        
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8}$";
+        
+        Pattern pattern = Pattern.compile(regex);
+        
+        System.out.println("isValidNewPassword " + newPasswod);
+        Matcher matcher = pattern.matcher(newPasswod.trim());
+        
+        
+        if (matcher.matches()){
+            FacesMessage message = new FacesMessage("The password must be 8 character, one capital letter, one small letter and 1 number.");
             
             throw new ValidatorException(message);
             
         }
+        
         return;
+        
     }
     
-     public String isLoginValid(){
-        String result = "";
-        MyUserDTO userDTO = myuserFacade.findUserbyPasswordAndEmail(userPassword, userEmail);
-        
-        if(userDTO == null){
+    
+     public void isValidConfirmPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+          
+        if (newPasswod == confirmPassword){
+            FacesMessage message = new FacesMessage("Password is not equal");
             
-            result= "/Members/signup.xhtml";
-        }else{
-            result= "/Members/mainmenu.xhtml";
-            //System.out.println("validLogin");
+            throw new ValidatorException(message);
+            
         }
         
-        return result;
+        return;
         
     }
-   
+    
+     
+     
+    public String updateMember(){
+        
+      MemberDTO m = new MemberDTO(this.member.getMemberID(), userName, userPhoneNumber, userEmail,newPasswod, SEQN, SEAN, member.getMembershipName());
+        
+      
+      if (myuserFacade.updateMember(m)){
+          return "";
+      }else{
+          return "";
+      }
+        
+     
+    } 
+    
+    
 
     public MyUserManagedBean() {
     }

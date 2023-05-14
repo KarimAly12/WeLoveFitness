@@ -24,7 +24,7 @@
         <web-resource-collection>
             <web-resource-name>CoachesOnly</web-resource-name>
             <description>CoachesOnly Access</description>
-            <url-pattern>/faces/Coach/*</url-pattern>
+            <url-pattern>/faces/coach/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -42,19 +42,19 @@
     </login-config>
     
     
-    <security-constraint>
+<!--    <security-constraint>
         <display-name>Members users</display-name>
         <web-resource-collection>
             <web-resource-name>Members</web-resource-name>
             <description/>
-            <url-pattern>/faces/Members/*</url-pattern>
+            <url-pattern>/faces/member/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>ED-COACHES</role-name>
             <role-name>WLSMEMBERS</role-name>
         </auth-constraint>
-    </security-constraint>
+    </security-constraint>-->
     
     
     
@@ -63,9 +63,9 @@
         <role-name>ED-COACHES</role-name>
     </security-role>
     
-    <security-role>
+<!--    <security-role>
         <description>Mmembers users</description>
         <role-name>WLSMEMBERS</role-name>
-    </security-role>
+    </security-role>-->
     
 </web-app>

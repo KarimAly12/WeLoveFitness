@@ -5,7 +5,7 @@
  */
 package session;
 
-import dto.MyUserDTO;
+import dto.MemberDTO;
 import javax.ejb.Remote;
 
 /**
@@ -16,11 +16,13 @@ import javax.ejb.Remote;
 public interface MyUserFacadeRemote {
     
     
-    boolean createUser(MyUserDTO userDTO);
+    boolean createUser(MemberDTO userDTO);
     
-    MyUserDTO findUser(Integer userID);
+    MemberDTO findUser(Integer userID);
     
-    MyUserDTO findUserbyPasswordAndEmail(String password, String userEmail);
-    MyUserDTO findUserByEmail(String email);
+    MemberDTO findUserbyPasswordAndEmail(String password, String userEmail);
+    MemberDTO findUserByEmail(String email);
     boolean buyMembership(String userEmail, String membershipName);
+
+    boolean updateMember(MemberDTO member);
 }

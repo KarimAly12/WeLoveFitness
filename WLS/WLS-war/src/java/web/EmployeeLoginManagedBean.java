@@ -5,7 +5,7 @@
  */
 package web;
 
-import dto.MyUserDTO;
+import dto.MemberDTO;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -60,7 +60,7 @@ public class EmployeeLoginManagedBean implements Serializable{
     
     public String isLoginValid(){
         String result = "";
-        MyUserDTO userDTO = myUserFacade.findUserbyPasswordAndEmail(password, userEmail);
+        MemberDTO userDTO = myUserFacade.findUserbyPasswordAndEmail(password, userEmail);
         
         if(userDTO == null){
             
