@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Add Coach</title>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <h:panelGrid columns ="3">
+
+
+
+                <h:outputText value ="Enter Coach ID"/>
+                <h:inputText id = "coachid" value ="#{coachManagedBean.coachID}" validator="#{coachManagedBean.isValidCoachID}"/>
+                <h:message
+                        for ="coachid" style="color:red"
+                        />
+                    
+                <h:outputText value ="Enter Coach name"/>
+                <h:inputText id="coachName" value="#{coachManagedBean.coachName}"/>
+                 <h:message
+                        for ="coachName" style="color:red"
+                        />
+                    
+
+                <h:outputText value="Enter coach age"/>
+                <h:inputText id ="age" value ="#{coachManagedBean.age}"/>
+                 <h:message
+                        for ="age" style="color:red"
+                        />
+                    
+
+
+                <h:outputText value ="Select gender"/>
+                <h:selectOneMenu id="gender" value ="#{coachManagedBean.coachGender}">
+
+                    <f:selectItem itemLabel="Male" itemValue="Male" />
+                    <f:selectItem itemLabel="Female" itemValue="Female" />
+
+
+
+                </h:selectOneMenu>
+                 <h:message
+                        for ="gender" style="color:red"
+                        />
+                    
+
+
+
+                <h:outputText value="Enter coach salary"/>
+                <h:inputText id ="salary" value ="#{coachManagedBean.salary}"/>
+                 <h:message
+                        for ="salary" style="color:red"
+                        />
+                    
+
+
+
+                <h:commandButton  value="Add Coach" type="Submit" action="#{coachManagedBean.addCoach}"/>
+
+
+
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

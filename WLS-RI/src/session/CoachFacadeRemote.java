@@ -5,6 +5,7 @@
  */
 package session;
 
+import dto.CoachDTO;
 import javax.ejb.Remote;
 
 /**
@@ -13,6 +14,8 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface CoachFacadeRemote {
+
+    boolean addCoach(CoachDTO coach);
     
     
 }

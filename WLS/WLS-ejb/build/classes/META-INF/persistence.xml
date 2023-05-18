@@ -4,6 +4,7 @@
     <jta-data-source>jdbc/__default</jta-data-source>
     <class>entity.Membership</class>
     <class>entity.WlsUser</class>
+    <class>entity.Coach</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
