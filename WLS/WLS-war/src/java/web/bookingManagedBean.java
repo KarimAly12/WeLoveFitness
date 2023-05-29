@@ -32,14 +32,14 @@ public class bookingManagedBean implements Serializable {
 
     private ArrayList<Booking> bookings;
 
-    public ArrayList<Booking> getBooking() {
+    public ArrayList<Booking> getBookings() {
        
         bookings = initBookings();
 
         return bookings;
     }
 
-    public void setBooking(ArrayList<Booking> booking) {
+    public void setBookings(ArrayList<Booking> booking) {
         this.bookings = booking;
     }
 

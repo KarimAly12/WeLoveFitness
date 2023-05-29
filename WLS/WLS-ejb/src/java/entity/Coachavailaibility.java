@@ -9,11 +9,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,18 +27,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Coachavailaibility.findAll", query = "SELECT c FROM Coachavailaibility c"),
-    @NamedQuery(name = "Coachavailaibility.findByAvailaibilityid", query = "SELECT c FROM Coachavailaibility c WHERE c.availaibilityid = :availaibilityid"),
     @NamedQuery(name = "Coachavailaibility.findByCoachid", query = "SELECT c FROM Coachavailaibility c WHERE c.coachid = :coachid"),
     @NamedQuery(name = "Coachavailaibility.findByDate", query = "SELECT c FROM Coachavailaibility c WHERE c.date = :date"),
-    @NamedQuery(name = "Coachavailaibility.findByTime", query = "SELECT c FROM Coachavailaibility c WHERE c.time = :time")})
+    @NamedQuery(name = "Coachavailaibility.findByTime", query = "SELECT c FROM Coachavailaibility c WHERE c.time = :time"),
+    @NamedQuery(name = "Coachavailaibility.findById", query = "SELECT c FROM Coachavailaibility c WHERE c.id = :id"),
+    @NamedQuery(name = "Coachavailaibility.findByTimeAndDate", query = "SELECT c FROM Coachavailaibility c WHERE c.date = :date and c.time = :time")
+})
 public class Coachavailaibility implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "AVAILAIBILITYID")
-    private Integer availaibilityid;
     @Size(max = 255)
     @Column(name = "COACHID")
     private String coachid;
@@ -47,20 +45,17 @@ public class Coachavailaibility implements Serializable {
     @Size(max = 255)
     @Column(name = "TIME")
     private String time;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
 
     public Coachavailaibility() {
     }
 
-    public Coachavailaibility(Integer availaibilityid) {
-        this.availaibilityid = availaibilityid;
-    }
-
-    public Integer getAvailaibilityid() {
-        return availaibilityid;
-    }
-
-    public void setAvailaibilityid(Integer availaibilityid) {
-        this.availaibilityid = availaibilityid;
+    public Coachavailaibility(Integer id) {
+        this.id = id;
     }
 
     public String getCoachid() {
@@ -87,10 +82,18 @@ public class Coachavailaibility implements Serializable {
         this.time = time;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (availaibilityid != null ? availaibilityid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -101,7 +104,7 @@ public class Coachavailaibility implements Serializable {
             return false;
         }
         Coachavailaibility other = (Coachavailaibility) object;
-        if ((this.availaibilityid == null && other.availaibilityid != null) || (this.availaibilityid != null && !this.availaibilityid.equals(other.availaibilityid))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -109,7 +112,7 @@ public class Coachavailaibility implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Coachavailaibility[ availaibilityid=" + availaibilityid + " ]";
+        return "entity.Coachavailaibility[ id=" + id + " ]";
     }
-    
+
 }

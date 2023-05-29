@@ -19,7 +19,7 @@
             
                 </tr>
                 <tbody>
-                    <ui:repeat value = "#{myUserManagedBean.member}" var ="row">
+                    <ui:repeat value = "#{bookingManagedBean.bookings}" var ="row">
 
                         <tr>
                             <td>#{row.coachName}</td>
@@ -31,7 +31,7 @@
                                 <h:form>
                                     <h:commandButton
                                         value ="Update"
-                                        action = "#{myUserManagedBean.openUpdatePage}"
+                                        action = ""
                                         
                                         />
 

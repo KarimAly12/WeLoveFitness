@@ -75,19 +75,21 @@ public class coachAvalFacade implements coachAvalFacadeRemote {
     @Override
     public boolean createAvailability(CoachAvailaibilityDTO availabilityDTO) {
         System.out.println(availabilityDTO.getCOACHID());
-        Coachavailaibility avali = find(availabilityDTO.getAvaliID());
+        Query query = em.createNamedQuery("Coachavailaibility.findByTimeAndDate").setParameter("time", availabilityDTO.getTIME()).setParameter("date", availabilityDTO.getDATE());
+         List<Coachavailaibility> avalis = query.getResultList();
         
         try {
 
+           
+
+         
             
-
-            System.out.println("in");
-            if (avali == null) {
-
-                create(caDTO2DAO(availabilityDTO));
-
+            if(avalis.size() == 1){
+                return true;
             }
+            System.out.println("innn");
 
+            create(caDTO2DAO(availabilityDTO));
             return true;
 
         } catch (Exception e) {
@@ -97,7 +99,7 @@ public class coachAvalFacade implements coachAvalFacadeRemote {
 
     private CoachAvailaibilityDTO caDAO2DTO(Coachavailaibility dao) {
 
-        return new CoachAvailaibilityDTO(dao.getAvailaibilityid(), dao.getCoachid(), dao.getDate(), dao.getTime());
+        return new CoachAvailaibilityDTO(dao.getCoachid(), dao.getDate(), dao.getTime());
 
     }
 
@@ -105,7 +107,6 @@ public class coachAvalFacade implements coachAvalFacadeRemote {
 
         Coachavailaibility dao = new Coachavailaibility();
 
-        dao.setAvailaibilityid(dto.getAvaliID());
         dao.setCoachid(dto.getCOACHID());
         dao.setDate(dto.getDATE());
         dao.setTime(dto.getTIME());

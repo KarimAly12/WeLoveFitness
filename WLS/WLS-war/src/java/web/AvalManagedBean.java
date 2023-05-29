@@ -76,7 +76,7 @@ public class AvalManagedBean implements Serializable{
     
     public String addAval(){
         
-        CoachAvailaibilityDTO ca = new CoachAvailaibilityDTO(avalID, coachID, date, time);
+        CoachAvailaibilityDTO ca = new CoachAvailaibilityDTO(coachID, date, time);
         
         
         if(coachAvalFacade.createAvailability(ca)){

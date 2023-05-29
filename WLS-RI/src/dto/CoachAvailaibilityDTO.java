@@ -12,14 +12,10 @@ package dto;
 public class CoachAvailaibilityDTO {
     
     
-    private final Integer AvaliID;
+    
     private final String COACHID;
     private final String DATE;
     private final String TIME;
-
-    public int getAvaliID() {
-        return AvaliID;
-    }
 
     public String getCOACHID() {
         return COACHID;
@@ -33,8 +29,8 @@ public class CoachAvailaibilityDTO {
         return TIME;
     }
 
-    public CoachAvailaibilityDTO(Integer AvaliID, String COACHID, String DATE, String TIME) {
-        this.AvaliID = AvaliID;
+    public CoachAvailaibilityDTO( String COACHID, String DATE, String TIME) {
+        
         this.COACHID = COACHID;
         this.DATE = DATE;
         this.TIME = TIME;
