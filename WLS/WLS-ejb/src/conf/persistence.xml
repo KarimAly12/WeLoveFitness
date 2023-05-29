@@ -5,6 +5,7 @@
     <class>entity.Membership</class>
     <class>entity.WlsUser</class>
     <class>entity.Coach</class>
+    <class>entity.Coachavailaibility</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

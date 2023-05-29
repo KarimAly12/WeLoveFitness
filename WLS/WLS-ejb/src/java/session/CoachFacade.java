@@ -5,13 +5,18 @@
  */
 package session;
 
+import dto.CoachAvailaibilityDTO;
 import dto.CoachDTO;
 import entity.Coach;
+import entity.Coachavailaibility;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -49,8 +54,49 @@ public class CoachFacade implements CoachFacadeRemote {
     }
     
     
+    private void createAvailability(Coachavailaibility aval){
+        em.persist(aval);  
+    }
     
+    private Coachavailaibility findAvailability(Object id){
+        return em.find(Coachavailaibility.class, id);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @Override
+      public ArrayList<CoachDTO> findAllAvals() {
 
+        ArrayList<CoachDTO> coachDTOs = new ArrayList<CoachDTO>();
+        Query query = em.createNamedQuery("Coach.findAll");
+
+        try {
+            List<Coach> coaches = query.getResultList();
+
+            for (Coach c : coaches) {
+
+                CoachDTO cadto = DAO2DTO(c);
+                coachDTOs.add(cadto);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return coachDTOs;
+    }
+    
+    
+    
+    
+  
+    
     @RolesAllowed({"ED-COACHES"})
     @Override
     public boolean addCoach(CoachDTO coach) {
@@ -92,10 +138,26 @@ public class CoachFacade implements CoachFacadeRemote {
     }
 
     
+    
+    
+   
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public CoachDTO findCoach(String coachID) {
+        
+        
+        try {
+            return DAO2DTO(find(coachID));
+            
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     
-    
-    
+   
     
 }

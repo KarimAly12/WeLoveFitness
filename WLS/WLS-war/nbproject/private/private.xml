@@ -3,26 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/login.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/MembershipManagedBean.java</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/viewDetails.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/authFailure.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/mainmenu.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/addAvailaibaility.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/buyMembership.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/MyUserManagedBean.java</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/addmembership.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/EmployeeLoginManagedBean.java</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/retryLogin.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/updateMember.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/viewMemberships.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/index.xhtml</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/CoachManagedBean.java</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/addCoach.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/WEB-INF/web.xml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/AvalManagedBean.java</file>
             <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/mainmenu.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/signUp.xhtml</file>
-            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/signUp.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/bookingManagedBean.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/mainmenu.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/addAvailaibaility.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/bookTime.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/MembershipManagedBean.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/coach/viewMemberships.xhtml</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/src/java/web/MyUserManagedBean.java</file>
+            <file>file:/Users/karimosama/Documents/GitHub/WeLoveFitness/WLS/WLS-war/web/member/viewDetails.xhtml</file>
         </group>
     </open-files>
 </project-private>

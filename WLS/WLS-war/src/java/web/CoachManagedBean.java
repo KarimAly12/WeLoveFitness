@@ -37,6 +37,8 @@ public class CoachManagedBean implements Serializable{
     private int age;
     private String coachGender;
     private double salary;
+    
+    
 
     public CoachFacadeRemote getCoachFacade() {
         return coachFacade;

@@ -7,22 +7,33 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
-        <h:panelGrid columns = "2">
-            <h:outputText value = "Coach name: "/>
-            <h:outputText value = "Name "/>
-            
-            <h:outputText value="Day availaible:"/>
-            
-            <input id="datePicker" type="date"/>
-            
-              <h:outputText value="Time availaible:"/>
-            
-            <input id="datePicker" type="time"/>
-            
-            
-        </h:panelGrid>
-        
+
+
+        <h:form>
+            <h:panelGrid columns = "2">
+
+          
+                <h:outputText value = "Coach ID "/>
+                <h:inputText value = "#{avalManagedBean.coachID}"/>
+
+                <h:outputText value="Date availaible:"/>
+                <h:inputText id="date" value = "#{avalManagedBean.date}"/>
+
+
+
+
+                <h:outputText value="Time availaible:"/>
+                <h:inputText id="time" value = "#{avalManagedBean.time}"/>
+
+
+
+
+                <h:commandButton  value="Add Coach" type="Submit" action="#{avalManagedBean.addAval}"/>
+
+
+            </h:panelGrid>
+        </h:form>
+
     </h:body>
 </html>
 

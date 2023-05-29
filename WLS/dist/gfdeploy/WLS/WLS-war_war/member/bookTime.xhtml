@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <table border ="1">
+            <thead>
+                <tr>
+                    <th>Coach Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Time</th>
+                    <th>Date</th>
+            
+                </tr>
+                <tbody>
+                    <ui:repeat value = "#{myUserManagedBean.member}" var ="row">
+
+                        <tr>
+                            <td>#{row.coachName}</td>
+                            <td>#{row.gender}</td>
+                            <td>#{row.age}</td>
+                            <td>#{row.time}</td>
+                            <td>#{row.date}</td>
+<!--                            <td>
+                                <h:form>
+                                    <h:commandButton
+                                        value ="Update"
+                                        action = "#{myUserManagedBean.openUpdatePage}"
+                                        
+                                        />
+
+                                </h:form>
+
+                            </td>-->
+
+
+                        </tr>
+
+                    </ui:repeat>
+
+
+                </tbody>
+
+
+            </thead>
+
+        </table>
+
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            td, th {
+                border: 1px solid black;
+                padding: 5px;
+            }
+        </style>
+
+    </h:body>
+</html>
+

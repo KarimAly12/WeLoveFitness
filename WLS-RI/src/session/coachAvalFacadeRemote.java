@@ -5,7 +5,7 @@
  */
 package session;
 
-import dto.CoachDTO;
+import dto.CoachAvailaibilityDTO;
 import java.util.ArrayList;
 import javax.ejb.Remote;
 
@@ -14,12 +14,10 @@ import javax.ejb.Remote;
  * @author karimosama
  */
 @Remote
-public interface CoachFacadeRemote {
+public interface coachAvalFacadeRemote {
+    
+        boolean createAvailability(CoachAvailaibilityDTO availabilityDTO);
 
-    boolean addCoach(CoachDTO coach);
-
-    ArrayList<CoachDTO> findAllAvals();
-
-    CoachDTO findCoach(String coachID);
+        ArrayList<CoachAvailaibilityDTO> findAllAvals();
 
 }
