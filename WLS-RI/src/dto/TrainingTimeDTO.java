@@ -9,7 +9,7 @@ package dto;
  *
  * @author karimosama
  */
-public class Booking {
+public class TrainingTimeDTO {
     private final String coachName;
     private  final String gender;
     private final int age;
@@ -36,7 +36,7 @@ public class Booking {
         return date;
     }
 
-    public Booking(String coachName, String gender, int age, String time, String date) {
+    public TrainingTimeDTO(String coachName, String gender, int age, String time, String date) {
         this.coachName = coachName;
         this.gender = gender;
         this.age = age;

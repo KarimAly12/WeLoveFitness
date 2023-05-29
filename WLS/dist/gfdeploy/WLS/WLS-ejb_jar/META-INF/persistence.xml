@@ -6,6 +6,7 @@
     <class>entity.WlsUser</class>
     <class>entity.Coach</class>
     <class>entity.Coachavailaibility</class>
+    <class>entity.Booking</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

@@ -5,6 +5,8 @@
  */
 package session;
 
+import dto.BookingDTO;
+import dto.TrainingTimeDTO;
 import dto.CoachAvailaibilityDTO;
 import java.util.ArrayList;
 import javax.ejb.Remote;
@@ -15,5 +17,9 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface BookingFacadeRemote {
+
+    ArrayList<BookingDTO> findAllBooking();
+
+    boolean createBooking(BookingDTO bookingDTO);
 
 }

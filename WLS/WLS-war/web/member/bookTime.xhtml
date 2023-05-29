@@ -27,17 +27,22 @@
                             <td>#{row.age}</td>
                             <td>#{row.time}</td>
                             <td>#{row.date}</td>
-<!--                            <td>
+                            <td>
                                 <h:form>
                                     <h:commandButton
-                                        value ="Update"
-                                        action = ""
-                                        
-                                        />
+                                        value ="Book"
+                                        action = "#{myUserManagedBean.addBooking()}"
+                                      
+                                        >
+                                    
+                                      <f:param name ="bookingTime" value="#{row.time}"/>
+                                      <f:param name ="bookingDate" value="#{row.date}"/>
+                                    
+                                    </h:commandButton>
 
                                 </h:form>
 
-                            </td>-->
+                            </td>
 
 
                         </tr>

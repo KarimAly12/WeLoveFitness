@@ -5,7 +5,7 @@
  */
 package web;
 
-import dto.Booking;
+import dto.TrainingTimeDTO;
 import dto.CoachAvailaibilityDTO;
 import dto.CoachDTO;
 import java.io.Serializable;
@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import session.CoachFacadeRemote;
 import session.coachAvalFacadeRemote;
 
@@ -30,40 +32,57 @@ public class bookingManagedBean implements Serializable {
     @EJB
     private CoachFacadeRemote coachFacade;
 
-    private ArrayList<Booking> bookings;
+    private ArrayList<TrainingTimeDTO> bookings;
 
-    public ArrayList<Booking> getBookings() {
-       
+    public ArrayList<TrainingTimeDTO> getBookings() {
+
         bookings = initBookings();
 
         return bookings;
     }
 
-    public void setBookings(ArrayList<Booking> booking) {
+    public void setBookings(ArrayList<TrainingTimeDTO> booking) {
         this.bookings = booking;
     }
 
     /**
      * Creates a new instance of bookingManagedBean
      */
+    public void addBooking() {
 
-    private ArrayList<Booking> initBookings() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+
+        String userEmailParam = externalContext.getRequestParameterMap().get("userEmail");
+        System.out.println(userEmailParam);
         
+        String bookingTimeParam = externalContext.getRequestParameterMap().get("bookingTime");
+        String bookingDateParam = externalContext.getRequestParameterMap().get("bookingDate");
+        
+        System.out.println(bookingTimeParam);
+        System.out.println(bookingDateParam);
+        
+        
+        
+
+    }
+
+    private ArrayList<TrainingTimeDTO> initBookings() {
+
         ArrayList<CoachAvailaibilityDTO> avals = coachAvalFacade.findAllAvals();
-        ArrayList<Booking> bookings = new ArrayList<Booking>();
-        
-        
-        for(CoachAvailaibilityDTO cadto: avals ){
-            
+        ArrayList<TrainingTimeDTO> bookings = new ArrayList<TrainingTimeDTO>();
+
+        for (CoachAvailaibilityDTO cadto : avals) {
+
             CoachDTO coachDTO = coachFacade.findCoach(cadto.getCOACHID());
-            
-            Booking booking = new Booking(coachDTO.getName(), coachDTO.getGender(), coachDTO.getAge(), cadto.getTIME(), cadto.getDATE());
-            
+
+            TrainingTimeDTO booking = new TrainingTimeDTO(coachDTO.getName(), coachDTO.getGender(), coachDTO.getAge(), cadto.getTIME(), cadto.getDATE());
+
             bookings.add(booking);
-               
+
         }
-        
-        return bookings;   
+
+        return bookings;
     }
 
     public bookingManagedBean() {
