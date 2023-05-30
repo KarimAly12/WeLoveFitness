@@ -317,6 +317,7 @@ public class MyUserManagedBean implements Serializable {
         if(bookingFacade.createBooking(bookingDTO)){
             return "";
         }else{
+            System.out.println("in");
             return "";
         }
 

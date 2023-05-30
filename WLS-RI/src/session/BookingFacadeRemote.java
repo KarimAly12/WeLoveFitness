@@ -22,4 +22,6 @@ public interface BookingFacadeRemote {
 
     boolean createBooking(BookingDTO bookingDTO);
 
+    boolean deleteBooking(BookingDTO bookingDTO);
+
 }

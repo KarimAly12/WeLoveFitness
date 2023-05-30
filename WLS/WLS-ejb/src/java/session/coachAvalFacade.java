@@ -80,10 +80,7 @@ public class coachAvalFacade implements coachAvalFacadeRemote {
         
         try {
 
-           
-
-         
-            
+        
             if(avalis.size() == 1){
                 return true;
             }

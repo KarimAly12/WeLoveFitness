@@ -31,6 +31,8 @@ public class bookingManagedBean implements Serializable {
 
     @EJB
     private CoachFacadeRemote coachFacade;
+    
+    
 
     private ArrayList<TrainingTimeDTO> bookings;
 
