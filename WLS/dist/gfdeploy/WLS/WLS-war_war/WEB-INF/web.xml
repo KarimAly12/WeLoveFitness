@@ -54,8 +54,8 @@
             <role-name>ED-COACHES</role-name>
             <role-name>WLSMEMBERS</role-name>
         </auth-constraint>
-    </security-constraint>-->
-    
+    </security-constraint>
+    -->
     
     
     <security-role>
@@ -63,9 +63,9 @@
         <role-name>ED-COACHES</role-name>
     </security-role>
     
-<!--    <security-role>
+    <security-role>
         <description>Mmembers users</description>
         <role-name>WLSMEMBERS</role-name>
-    </security-role>-->
+    </security-role>
     
 </web-app>

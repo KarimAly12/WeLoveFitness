@@ -20,7 +20,7 @@ import javax.persistence.Query;
  *
  * @author karimosama
  */
-@DeclareRoles({"ED-COACHES", "WLSMEMBERS"})
+//@DeclareRoles({"ED-COACHES", "WLSMEMBERS"})
 @Stateless
 public class MembershipFacade implements MembershipFacadeRemote {
 
@@ -98,7 +98,7 @@ public class MembershipFacade implements MembershipFacadeRemote {
         return dto;
     }
 
-    @RolesAllowed({"ED-COACHES", "WLSMEMBERS"})
+   // @RolesAllowed({"ED-COACHES", "WLSMEMBERS"})
     @Override
     public ArrayList<MembershipDTO> getMembershipsAll() {
 

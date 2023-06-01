@@ -22,7 +22,6 @@ import session.MembershipFacadeRemote;
  */
 @Named(value = "membershipManagedBean")
 @SessionScoped
-@ManagedBean
 public class MembershipManagedBean implements Serializable{
 
     @EJB
