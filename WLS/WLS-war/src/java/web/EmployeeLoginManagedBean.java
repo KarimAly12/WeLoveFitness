@@ -30,14 +30,7 @@ public class EmployeeLoginManagedBean implements Serializable{
     private String userEmail;
     private String password;
 
-    public MyUserFacadeRemote getMyUserFacade() {
-        return myUserFacade;
-    }
-
-    public void setMyUserFacade(MyUserFacadeRemote myUserFacade) {
-        this.myUserFacade = myUserFacade;
-    }
-
+   
     public String getUserEmail() {
         return userEmail;
     }
@@ -58,20 +51,20 @@ public class EmployeeLoginManagedBean implements Serializable{
     public EmployeeLoginManagedBean() {
     }
     
-    public String isLoginValid(){
+    public String isLoginValid() {
         String result = "";
         MemberDTO userDTO = myUserFacade.findUserbyPasswordAndEmail(password, userEmail);
-        
-        if(userDTO == null){
-            
-            result= "/Members/signup.xhtml";
-        }else{
-            result= "/Members/mainmenu.xhtml";
+
+        if (userDTO == null) {
+
+            result = "/member/signUp.xhtml";
+        } else {
+            result = "/member/mainmenu.xhtml";
             //System.out.println("validLogin");
         }
-        
+
         return result;
-        
+
     }
     
 }

@@ -50,7 +50,8 @@ public class MyUserManagedBean implements Serializable {
     private String userPhoneNumber;
     private String userEmail;
     private String userEmailSignUp;
-    private String userPassword;
+    private String loginUserPassword;
+    private String loginUserEmail;
     private String SEQN;
     private String SEAN;
     private String membershipName;
@@ -58,6 +59,22 @@ public class MyUserManagedBean implements Serializable {
     private String confirmPassword;
     private String newPassword;
     private MemberDTO member;
+
+    public String getLoginUserEmail() {
+        return loginUserEmail;
+    }
+
+    public void setLoginUserEmail(String loginUserEmail) {
+        this.loginUserEmail = loginUserEmail;
+    }
+
+    public String getLoginUserPassword() {
+        return loginUserPassword;
+    }
+
+    public void setLoginUserPassword(String loginUserPassword) {
+        this.loginUserPassword = loginUserPassword;
+    }
 
     public String getUserEmailSignUp() {
         return userEmailSignUp;
@@ -141,7 +158,7 @@ public class MyUserManagedBean implements Serializable {
     }
 
     public String getUserEmail() {
-        userEmail = "";
+        //userEmail = "";
         return userEmail;
     }
 
@@ -149,14 +166,13 @@ public class MyUserManagedBean implements Serializable {
         this.userEmail = userEmail;
     }
 
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
+//    public String getUserPassword() {
+//        return userPassword;
+//    }
+//
+//    public void setUserPassword(String userPassword) {
+//        this.userPassword = userPassword;
+//    }
     public String getSEQN() {
         return SEQN;
     }
@@ -183,6 +199,7 @@ public class MyUserManagedBean implements Serializable {
                 MemberDTO user = new MemberDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, newPassword, SEQN, SEAN, null);
                 if (myuserFacade != null) {
                     myuserFacade.createUser(user);
+                    newPassword = "";
                 }
             }
 
@@ -192,12 +209,12 @@ public class MyUserManagedBean implements Serializable {
         }*/
     }
 
-    public String buyMembership(String membershipParam) {
+    public String buyMembership() {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
 
-        //String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
+        String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
         //System.out.println(userEmail);
         if (myuserFacade.buyMembership(userEmail, membershipParam)) {
 
@@ -213,37 +230,35 @@ public class MyUserManagedBean implements Serializable {
         String data = value.toString();
         MemberDTO user = myuserFacade.findUserByEmail(data);
 
-        
         if (user != null) {
+            
             FacesMessage message = new FacesMessage("The email exist. Write different email");
+
+            
+            if (member == null){
+                 throw new ValidatorException(message);
+            }
+            if(!member.getMemberEmail().equalsIgnoreCase(user.getMemberEmail())){
+                throw new ValidatorException(message);
+            }
             userEmail = data;
 
-            throw new ValidatorException(message);
+            
 
         }
         return;
     }
 
-    public String isLoginValid() {
-        String result = "";
-        MemberDTO userDTO = myuserFacade.findUserbyPasswordAndEmail(userPassword, userEmail);
-
-        if (userDTO == null) {
-
-            result = "/member/signup.xhtml";
-        } else {
-            result = "/member/mainmenu.xhtml";
-            //System.out.println("validLogin");
-        }
-
-        return result;
-
-    }
-
     public String openUpdatePage() {
-        member = myuserFacade.findUserByEmail(userEmail);
+        member = myuserFacade.findUserByEmail(loginUserEmail);
 
-        System.out.println("openUpdatePage " + member.getMemberEmail());
+        System.out.println("openUpdatePage " + member.getMemberPassword());
+        
+        userName = member.getMemberName();
+        userPhoneNumber = member.getMemberPhoneNumber();
+        SEAN = member.getSEAN();
+        SEQN = member.getSEQN();
+        
 
         return "/member/updateMember.xhtml";
 
@@ -251,9 +266,9 @@ public class MyUserManagedBean implements Serializable {
 
     public void isValidOldPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-        System.out.println("isValidOldPassword " + oldPassword);
-        if (value.toString() != member.getMemberPassword()) {
-            FacesMessage message = new FacesMessage("The email exist. Write different email");
+        System.out.println("isValidOldPassword " + member.getMemberPassword());
+        if (!value.toString().equalsIgnoreCase(member.getMemberPassword())) {
+            FacesMessage message = new FacesMessage("Your old password is incorrect");
 
             throw new ValidatorException(message);
 
@@ -299,11 +314,15 @@ public class MyUserManagedBean implements Serializable {
     }
 
     public String updateMember() {
-
-        MemberDTO m = new MemberDTO(this.member.getMemberID(), userName, userPhoneNumber, userEmail, newPassword, SEQN, SEAN, member.getMembershipName());
+        System.out.println(member.getMemberEmail());
+        MemberDTO m = new MemberDTO(member.getMemberID(), userName, userPhoneNumber, userEmail, confirmPassword, SEQN, SEAN, member.getMembershipName());
 
         if (myuserFacade.updateMember(m)) {
-            return "";
+            
+            newPassword = "";
+            oldPassword ="";
+            confirmPassword ="";
+            return "/member/mainmenu.xhtml";
         } else {
             return "";
         }
@@ -332,6 +351,24 @@ public class MyUserManagedBean implements Serializable {
             System.out.println("in");
             return "";
         }
+
+    }
+    
+    
+     public String isLoginValid() {
+        String result = "";
+        MemberDTO userDTO = myuserFacade.findUserbyPasswordAndEmail(loginUserPassword, loginUserEmail);
+
+        if (userDTO == null) {
+
+            result = "/member/signUp.xhtml";
+        } else {
+            result = "/member/mainmenu.xhtml";
+            userEmail = loginUserEmail;
+            //System.out.println("validLogin");
+        }
+
+        return result;
 
     }
 

@@ -7,118 +7,118 @@
     </h:head>
     <h:body>
 
-
-
-        <h:panelGrid columns = "3" >
-
-            <h:outputText
-                value ="Enter your name"
-                />
-            <h:inputText
-                id ="userNameu"
-                value ="#{myUserManagedBean.userName}"
-                />
-
-            <h:message
-                for ="userNameu" style="color:red"
-                />
-            <h:outputText
-                value ="Enter your phone number"
-                />
-            <h:inputText
-                id ="userPhoneNumberu"
-                value ="#{myUserManagedBean.userPhoneNumber}"
-                />
-            <h:message
-                for ="userPhoneNumberu" style="color:red"
-                />
-
-            <h:outputText
-                value ="Enter your email"
-                />
-            <h:inputText
-                id ="userEmailu"
-                value ="#{myUserManagedBean.userEmail}"
-                validator = "#{myUserManagedBean.isValiduseremail}"
-                />
-
-
-            <h:message
-                for ="userEmailu" style="color:red"
-                />
-
-
-            <h:outputText
-                value ="Enter your old password"
-                />
-            <h:inputText
-                id ="userPasswordOld"
-                value ="#{myUserManagedBean.oldPassword}"
-                validator ="#{myUserManagedBean.isValidOldPassword}"
-                />
-
-
-            <h:message
-                for ="userPasswordOld" style="color:red"
-                />
-
-            <h:outputText
-                value ="Enter your new password"
-                />
-            <h:inputText
-                id ="userPasswordNew"
-                value ="#{myUserManagedBean.newPasswod}"
-                validator ="#{myUserManagedBean.isValidNewPassword}"
-                />
-
-            <h:message
-                for ="userPasswordNew" style="color:red"
-                />
-
-
-            <h:outputText
-                value ="Confirm your new password"
-                />
-            <h:inputText
-                id ="userPasswordConfirm"
-                value ="#{myUserManagedBean.confirmPassword}"
-                validator ="#{myUserManagedBean.isValidConfirmPassword}"
-                />
-
-
-            <h:message
-                for ="userPasswordConfirm" style="color:red"
-                />
-
-            <h:outputText
-                value ="Enter your security question"
-                />
-            <h:inputText
-                id ="userSEQNu"
-                value ="#{myUserManagedBean.SEQN}"
-                />
-
-            <h:message
-                for ="userSEQNu" style="color:red"
-                />
-
-
-            <h:outputText
-                value ="Enter your security answer"
-                />
-            <h:inputText
-                id ="userSEANu"
-                value ="#{myUserManagedBean.SEAN}"
-                />
-
-            <h:message
-                for ="userSEANu" style="color:red"
-                />
-
-
-        </h:panelGrid>
-
         <h:form>
+
+            <h:panelGrid columns = "3" >
+
+                <h:outputText
+                    value ="Enter your name"
+                    />
+                <h:inputText
+                    id ="userNameu"
+                    value ="#{myUserManagedBean.userName}"
+                    />
+
+                <h:message
+                    for ="userNameu" style="color:red"
+                    />
+                <h:outputText
+                    value ="Enter your phone number"
+                    />
+                <h:inputText
+                    id ="userPhoneNumberu"
+                    value ="#{myUserManagedBean.userPhoneNumber}"
+                    />
+                <h:message
+                    for ="userPhoneNumberu" style="color:red"
+                    />
+
+                <h:outputText
+                    value ="Enter your email"
+                    />
+                <h:inputText
+                    id ="userEmailu"
+                    value ="#{myUserManagedBean.userEmail}"
+                    validator = "#{myUserManagedBean.isValiduseremail}"
+                    />
+
+
+                <h:message
+                    for ="userEmailu" style="color:red"
+                    />
+
+
+                <h:outputText
+                    value ="Enter your old password"
+                    />
+                <h:inputText
+                    id ="userPasswordOld"
+                    value ="#{myUserManagedBean.oldPassword}"
+                    validator ="#{myUserManagedBean.isValidOldPassword}"
+                    />
+
+
+                <h:message
+                    for ="userPasswordOld" style="color:red"
+                    />
+
+                <h:outputText
+                    value ="Enter your new password"
+                    />
+                <h:inputText
+                    id ="userPasswordNew"
+                    value ="#{myUserManagedBean.newPasswod}"
+                    validator ="#{myUserManagedBean.isValidNewPassword}"
+                    />
+
+                <h:message
+                    for ="userPasswordNew" style="color:red"
+                    />
+
+
+                <h:outputText
+                    value ="Confirm your new password"
+                    />
+                <h:inputText
+                    id ="userPasswordConfirm"
+                    value ="#{myUserManagedBean.confirmPassword}"
+                    validator ="#{myUserManagedBean.isValidConfirmPassword}"
+                    />
+
+
+                <h:message
+                    for ="userPasswordConfirm" style="color:red"
+                    />
+
+                <h:outputText
+                    value ="Enter your security question"
+                    />
+                <h:inputText
+                    id ="userSEQNu"
+                    value ="#{myUserManagedBean.SEQN}"
+                    />
+
+                <h:message
+                    for ="userSEQNu" style="color:red"
+                    />
+
+
+                <h:outputText
+                    value ="Enter your security answer"
+                    />
+                <h:inputText
+                    id ="userSEANu"
+                    value ="#{myUserManagedBean.SEAN}"
+                    />
+
+                <h:message
+                    for ="userSEANu" style="color:red"
+                    />
+
+
+            </h:panelGrid>
+
+
             <h:commandButton value ="Update"  type = "Submit" action ="#{myUserManagedBean.updateMember}" />
 
         </h:form>

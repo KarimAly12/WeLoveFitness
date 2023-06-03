@@ -21,7 +21,7 @@
                     
                     <h:inputText
                         id ="userEmail"
-                        value ="#{myUserManagedBean.userEmail}"
+                        value ="#{myUserManagedBean.loginUserEmail}"
                     />
                     
                      <h:outputText
@@ -30,18 +30,18 @@
                     
                     <h:inputSecret
                         id ="password"
-                        value ="#{myUserManagedBean.userPassword}"
+                        value ="#{myUserManagedBean.loginUserPassword}"
                     />
                     
                 </h:panelGrid>
                 
                 
                 
-                <h:commandButton id = "signupPage" type ="Submit" value ="Sign Up" action = "/signUp.xhtml"/>
-                <h:commandButton id = "loginIN" type ="Submit" value ="Login" action = "#{myUserManagedBean.isLoginValid()}">
+                <h:commandButton id = "signupPage" type ="Submit" value ="Sign Up" action = "/member/signUp.xhtml"/>
+                <h:commandButton id = "loginIN" type ="Submit" value ="Login" action = "#{myUserManagedBean.isLoginValid}">
                 
                     <f:param
-                        name ="userEmail" value="#{myUserManagedBean.userEmail}"
+                        name ="userEmail" value="#{myUserManagedBean.loginUserEmail}"
                         
                         />
                 </h:commandButton>
