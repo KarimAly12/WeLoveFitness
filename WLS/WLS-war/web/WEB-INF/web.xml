@@ -10,7 +10,7 @@
         </session-timeout>
     </session-config>
     
-      <error-page>
+    <error-page>
         <error-code>403</error-code>
         <location>/faces/authFailure.xhtml</location>
     </error-page>
@@ -42,7 +42,7 @@
     </login-config>
     
     
-<!--    <security-constraint>
+    <!--    <security-constraint>
         <display-name>Members users</display-name>
         <web-resource-collection>
             <web-resource-name>Members</web-resource-name>
@@ -67,5 +67,6 @@
         <description>Mmembers users</description>
         <role-name>WLSMEMBERS</role-name>
     </security-role>
+    
     
 </web-app>

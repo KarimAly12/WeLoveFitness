@@ -45,27 +45,34 @@ public class MyUserManagedBean implements Serializable {
      *
      */
 
-    
-   
     private String userID;
     private String userName;
     private String userPhoneNumber;
     private String userEmail;
+    private String userEmailSignUp;
     private String userPassword;
     private String SEQN;
     private String SEAN;
     private String membershipName;
     private String oldPassword;
     private String confirmPassword;
-    private String newPasswod;
+    private String newPassword;
     private MemberDTO member;
 
+    public String getUserEmailSignUp() {
+        return userEmailSignUp;
+    }
+
+    public void setUserEmailSignUp(String userEmailSignUp) {
+        this.userEmailSignUp = userEmailSignUp;
+    }
+
     public String getNewPasswod() {
-        return newPasswod;
+        return newPassword;
     }
 
     public void setNewPasswod(String newPasswod) {
-        this.newPasswod = newPasswod;
+        this.newPassword = newPasswod;
     }
 
     public String getOldPassword() {
@@ -134,6 +141,7 @@ public class MyUserManagedBean implements Serializable {
     }
 
     public String getUserEmail() {
+        userEmail = "";
         return userEmail;
     }
 
@@ -167,29 +175,29 @@ public class MyUserManagedBean implements Serializable {
 
     public void addUser() {
         //try {
-        if (userID != null && userName != null && userPhoneNumber != null && userPassword != null && SEQN != null && SEAN != null) {
-            MemberDTO userSearched = myuserFacade.findUserByEmail(userEmail);
+        if (userID != null && userName != null && userPhoneNumber != null && SEQN != null && SEAN != null) {
+            MemberDTO userSearched = myuserFacade.findUser(Integer.parseInt(userID));
+            System.err.println("IN");
 
             if (userSearched == null) {
-                System.err.println("IN");
-                MemberDTO user = new MemberDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, userPassword, SEQN, SEAN, null);
+                MemberDTO user = new MemberDTO(Integer.parseInt(userID), userName, userPhoneNumber, userEmail, newPassword, SEQN, SEAN, null);
                 if (myuserFacade != null) {
                     myuserFacade.createUser(user);
                 }
             }
+
         }
         /*} catch (Exception e) {
             System.out.print(e);
         }*/
     }
 
-    public String buyMembership() {
+    public String buyMembership(String membershipParam) {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
 
-        String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
-
+        //String membershipParam = externalContext.getRequestParameterMap().get("membershipName");
         //System.out.println(userEmail);
         if (myuserFacade.buyMembership(userEmail, membershipParam)) {
 
@@ -202,11 +210,13 @@ public class MyUserManagedBean implements Serializable {
 
     public void isValiduseremail(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-        MemberDTO user = myuserFacade.findUserByEmail(userEmail);
+        String data = value.toString();
+        MemberDTO user = myuserFacade.findUserByEmail(data);
 
+        
         if (user != null) {
             FacesMessage message = new FacesMessage("The email exist. Write different email");
-            userEmail = member.getMemberEmail();
+            userEmail = data;
 
             throw new ValidatorException(message);
 
@@ -242,7 +252,7 @@ public class MyUserManagedBean implements Serializable {
     public void isValidOldPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
         System.out.println("isValidOldPassword " + oldPassword);
-        if (oldPassword != member.getMemberPassword()) {
+        if (value.toString() != member.getMemberPassword()) {
             FacesMessage message = new FacesMessage("The email exist. Write different email");
 
             throw new ValidatorException(message);
@@ -255,15 +265,17 @@ public class MyUserManagedBean implements Serializable {
 
     public void isValidNewPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8}$";
+        String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[+*-].*).+$";
 
         Pattern pattern = Pattern.compile(regex);
+        String data = value.toString();
+        newPassword = data;
 
-        System.out.println("isValidNewPassword " + newPasswod);
-        Matcher matcher = pattern.matcher(newPasswod.trim());
+        System.out.println("isValidNewPassword " + newPassword);
+        Matcher matcher = pattern.matcher(newPassword);
 
-        if (matcher.matches()) {
-            FacesMessage message = new FacesMessage("The password must be 8 character, one capital letter, one small letter and 1 number.");
+        if (data.length() != 6 || !data.matches(regex)) {
+            FacesMessage message = new FacesMessage("Password should contain 6 characters, 1 capital letter, 1 small letter, 1 digit and 1 (+ - *)");
 
             throw new ValidatorException(message);
 
@@ -275,7 +287,7 @@ public class MyUserManagedBean implements Serializable {
 
     public void isValidConfirmPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-        if (newPasswod == confirmPassword) {
+        if (newPassword == confirmPassword) {
             FacesMessage message = new FacesMessage("Password is not equal");
 
             throw new ValidatorException(message);
@@ -288,7 +300,7 @@ public class MyUserManagedBean implements Serializable {
 
     public String updateMember() {
 
-        MemberDTO m = new MemberDTO(this.member.getMemberID(), userName, userPhoneNumber, userEmail, newPasswod, SEQN, SEAN, member.getMembershipName());
+        MemberDTO m = new MemberDTO(this.member.getMemberID(), userName, userPhoneNumber, userEmail, newPassword, SEQN, SEAN, member.getMembershipName());
 
         if (myuserFacade.updateMember(m)) {
             return "";
@@ -311,19 +323,17 @@ public class MyUserManagedBean implements Serializable {
 
         System.out.println(bookingTimeParam);
         System.out.println(bookingDateParam);
-        
+
         BookingDTO bookingDTO = new BookingDTO(userEmail, bookingTimeParam, bookingDateParam);
-        
-        if(bookingFacade.createBooking(bookingDTO)){
+
+        if (bookingFacade.createBooking(bookingDTO)) {
             return "";
-        }else{
+        } else {
             System.out.println("in");
             return "";
         }
 
     }
-
-   
 
     public MyUserManagedBean() {
     }

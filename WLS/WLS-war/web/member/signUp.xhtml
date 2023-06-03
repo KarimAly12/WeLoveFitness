@@ -66,12 +66,13 @@
                         value ="Enter your password"
                         />
                     <h:inputText
-                        id ="userPassword"
-                        value ="#{myUserManagedBean.userPassword}"
+                        id ="newUserPassword"
+                        value ="#{myUserManagedBean.newPassword}"
+                        validator = "#{myUserManagedBean.isValidNewPassword}"
                         />
 
                     <h:message
-                        for ="userPassword" style="color:red"
+                        for ="newUserPassword" style="color:red"
                         />
 
                     <h:outputText
