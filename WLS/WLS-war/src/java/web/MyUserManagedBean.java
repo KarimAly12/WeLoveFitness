@@ -361,7 +361,7 @@ public class MyUserManagedBean implements Serializable {
 
         if (userDTO == null) {
 
-            result = "/member/signUp.xhtml";
+            result = "";
         } else {
             result = "/member/mainmenu.xhtml";
             userEmail = loginUserEmail;
