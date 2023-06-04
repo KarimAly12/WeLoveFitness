@@ -371,6 +371,17 @@ public class MyUserManagedBean implements Serializable {
         return result;
 
     }
+     
+      public String deleteAccount(){
+          
+          if(myuserFacade.deleteMember(userEmail)){
+              userEmail="";
+              return "/member/login.xhtml";
+              
+          }
+          return "";
+        
+    }
 
     public MyUserManagedBean() {
     }

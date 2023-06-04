@@ -158,6 +158,11 @@ public class MyUserFacade implements MyUserFacadeRemote {
         
         return false;
     }
+    
+    
+    
+    
+    
 
     private WlsUser myUserDTO2DAO(MemberDTO myUserDTO) {
         WlsUser user = new WlsUser();
@@ -191,6 +196,21 @@ public class MyUserFacade implements MyUserFacadeRemote {
         
         
         return false;
+    }
+
+    @Override
+    public boolean deleteMember(String userEmail) {
+        try{
+            WlsUser user = myUserDTO2DAO(findUserByEmail(userEmail));
+            
+            remove(user);
+            
+            return true;
+            
+        }catch(Exception ex){
+        
+            return false;
+        }
     }
 
 }

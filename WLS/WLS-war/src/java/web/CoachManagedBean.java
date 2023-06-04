@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import session.BookingFacadeRemote;
 import session.CoachFacadeRemote;
 
@@ -135,6 +137,17 @@ public class CoachManagedBean implements Serializable {
     }
 
     public void isValidCoachID(FacesContext context, UIComponent component, Object value) {
+        
+            CoachDTO coachDTO = coachFacade.findCoach(value.toString());
+            
+            if (coachDTO != null){
+                
+            FacesMessage message = new FacesMessage("This coach id exist");
+
+            throw new ValidatorException(message);
+            }
+        
+
 
     }
 

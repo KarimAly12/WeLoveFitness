@@ -25,4 +25,6 @@ public interface MyUserFacadeRemote {
     boolean buyMembership(String userEmail, String membershipName);
 
     boolean updateMember(MemberDTO member);
+
+    boolean deleteMember(String userEmail);
 }
